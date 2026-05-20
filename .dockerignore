@@ -1,0 +1,6 @@
+node_modules
+dist
+.git
+docker-compose*.yaml
+docker-compose*.yml
+Makefile

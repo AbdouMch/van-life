@@ -1,0 +1,29 @@
+services:
+    react-app:
+        image: node:${NODE_VERSION}
+        working_dir: /app
+        ports:
+            - "${HOST_PORT}:${CONTAINER_PORT}"
+            - "${HOST_PREVIEW_PORT}:${CONTAINER_PREVIEW_PORT}"
+        volumes:
+            - .:/app
+        command: >
+            sh -c "
+              echo '' &&
+              echo '  ┌─────────────────────────────────────────┐' &&
+              echo '  │  Installing dependencies (npm install)  │' &&
+              echo '  └─────────────────────────────────────────┘' &&
+              echo '' &&
+              npm install &&
+              echo '' &&
+              echo '  ┌─────────────────────────────────────────┐' &&
+              echo '  │  Starting dev server (vite)             │' &&
+              echo '  └─────────────────────────────────────────┘' &&
+              echo '' &&
+              npm run dev -- --host --port ${CONTAINER_PORT}
+            "
+        user: "${USER_ID}:${GROUP_ID}"
+        env_file:
+            - docker.env
+        environment:
+            - NODE_ENV=${NODE_ENV}
