@@ -4,7 +4,7 @@ Guidance for AI coding assistants working in this repository.
 
 ## Stack
 
-React 19 · TypeScript · Vite · Sass · Bootstrap 5 · ESLint · Prettier · Husky · Docker
+React 19 · TypeScript · Vite · Tailwind v4 · ESLint · Prettier · Husky · Docker
 
 ## Development
 
@@ -28,14 +28,15 @@ make run c="npm run format"
 
 ## Code style
 
-- **Prettier**: no semicolons, double quotes, 4-space indent, 100-char line width
+- **Prettier**: no semicolons, double quotes, 4-space indent, 100-char line width, `prettier-plugin-tailwindcss` (auto-sorts class order)
 - **ESLint**: TypeScript-ESLint + react-hooks + react-refresh, integrated with Prettier
 - Pre-commit hook runs lint-staged automatically on `*.ts/tsx`, `*.json/css/md`
 
 ## Architecture
 
-- `src/styles/_variables.scss` — design tokens (CSS custom properties) and a `rem($px)` helper; customize colors here
-- `src/styles/main.scss` — global styles; imports Bootstrap 5 via `@use "bootstrap/scss/bootstrap"`
-- Components live in `src/components/` as colocated `.tsx` + `.module.scss` pairs
+- `src/styles/main.css` — entry point: `@import "tailwindcss"`, `@theme` block for brand tokens, `@layer base` for global resets
+- Tailwind v4 uses the `@tailwindcss/vite` plugin — no `tailwind.config.ts`, all config is CSS-first
+- Brand tokens: `--color-brand` (#ff8c38), `--color-cream` (#fff7ed), `--color-muted` (#4d4d4d), `--color-footer-text` (#aaaaaa)
+- Components live in `src/components/<Name>/` as `.tsx` + `index.tsx` (re-export) — no CSS Modules
 - Path alias `@/` maps to `src/` — always use `import Foo from "@/components/Foo"` over relative paths
-- Bootstrap is available for layout/utilities; CSS Modules handle component-scoped styles
+- Background images: import as module (`import img from "@/assets/..."`) and pass via `style={{ backgroundImage: ... }}`

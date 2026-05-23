@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand: #ff8c38;
+    --color-brand-light: #ffcc8d;
+    --color-brand-hover: #8f5c33;
+    --color-cream: #fff7ed;
+    --color-black-light: #252525;
+    --color-black: #161616;
+    --color-muted: #4d4d4d;
+    --color-footer-text: #aaaaaa;
+    --color-van-type-simple: #e17654;
+    --color-van-type-luxury: #161616;
+    --color-van-type-rugged: #115e59;
+
+    --font-family-sans: Inter, sans-serif;
+}
+
+@layer base {
+    body {
+        @apply font-sans antialiased;
+    }
+
+    #root {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+    }
+}
