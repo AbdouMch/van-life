@@ -1,8 +1,10 @@
-import type { Van as VanType } from "@/type.ts"
 import { useParams } from "react-router-dom"
+
+import type { Van as VanType } from "@/type.ts"
 import useFetch from "@/hooks/useFetch.ts"
-import PageWrapper from "@/components/VanDetails/PageWrapper.tsx"
 import { cn, typeBg } from "@/lib/cn.ts"
+
+import PageWrapper from "@/pages/VanDetails/PageWrapper.tsx"
 
 export default function VanDetails() {
     const { id } = useParams()

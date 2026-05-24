@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 
 import type { Van as VanType } from "@/type"
 
-import Van from "@/components/Vans/Van.tsx"
-import PageWrapper from "@/components/Vans/PageWrapper.tsx"
+import Van from "@/pages/Vans/Van.tsx"
+import PageWrapper from "@/pages/Vans/PageWrapper.tsx"
 import useFetch from "@/hooks/useFetch.ts"
 
 function Vans() {
