@@ -20,19 +20,21 @@ export default function About() {
                     Our team is full of vanlife enthusiasts who know firsthand the magic of touring
                     the world on 4 wheels.
                 </p>
-                <div className="explore-vans bg-brand-light mt-12 flex flex-col px-12 py-16">
+                <div className="explore-vans bg-brand-light mt-12 rounded-md px-12 py-16">
                     <p className={"text-left text-[1.5rem] font-medium text-black"}>
                         Your destination is waiting.
                         <br />
                         Your van is ready.
                     </p>
 
-                    <Link
-                        to="/vans"
-                        className="hover:bg-brand-hover mt-5 h-12.5 place-content-center rounded bg-black text-center font-semibold text-white"
-                    >
-                        Explore our vans
-                    </Link>
+                    <div className="mt-6">
+                        <Link
+                            to="/vans"
+                            className="hover:bg-brand-hover place-content-center rounded-xl bg-black px-5 py-3 text-center font-semibold text-white"
+                        >
+                            Explore our vans
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

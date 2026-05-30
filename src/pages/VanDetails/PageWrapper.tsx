@@ -1,6 +1,6 @@
 import { type ReactNode } from "react"
 import { Link } from "react-router-dom"
-import { cn } from "@/lib/cn.ts"
+import { cn } from "@/lib/cn"
 
 export default function PageWrapper({ children }: { children: ReactNode }) {
     return (

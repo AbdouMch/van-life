@@ -1,11 +1,11 @@
 import heroImg from "@/assets/images/home-hero.png"
 import { Link } from "react-router-dom"
-import { cn } from "@/lib/cn.ts"
+import { cn } from "@/lib/cn"
 
 export default function Home() {
     return (
         <div
-            className="-mr-1 -mb-0.5 flex-1 bg-cover bg-center bg-no-repeat px-8 pt-40 pb-0"
+            className="bg-cover bg-center bg-no-repeat px-8 pt-40"
             style={{ backgroundImage: `url(${heroImg})` }}
         >
             <h1 className="text-left text-[2.5rem] font-extrabold text-white">
@@ -19,7 +19,7 @@ export default function Home() {
                 <Link
                     to="/vans"
                     className={cn(
-                        "mt-12 inline-block h-12.5 w-120 content-center rounded text-center",
+                        "mt-12 inline-block content-center rounded px-40 py-3 text-center",
                         "font-semibold text-white",
                         "bg-brand hover:bg-brand-hover",
                     )}

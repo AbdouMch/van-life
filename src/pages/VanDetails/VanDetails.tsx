@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom"
 
-import type { Van as VanType } from "@/type.ts"
-import useFetch from "@/hooks/useFetch.ts"
-import { cn, typeBg } from "@/lib/cn.ts"
+import type { Van as VanType } from "@/type"
+import useFetch from "@/hooks/useFetch"
+import { cn, typeBg } from "@/lib/cn"
 
-import PageWrapper from "@/pages/VanDetails/PageWrapper.tsx"
+import PageWrapper from "@/pages/VanDetails/PageWrapper"
+import { formatCurrency } from "@/lib/format"
 
 export default function VanDetails() {
     const { id } = useParams()
@@ -44,7 +45,7 @@ export default function VanDetails() {
                     className="max-h-220 w-auto rounded"
                 />
             </div>
-            <div className="van-type-container mt-5">
+            <div className="mt-5">
                 <span
                     className={cn(
                         typeBg[van.type],
@@ -57,7 +58,7 @@ export default function VanDetails() {
             </div>
             <p className="mt-5 text-[2rem] font-extrabold text-black">{van.name}</p>
             <p className="mt-2 text-[1.5rem] font-medium text-black">
-                <span className="text-[1.75rem] font-medium">${van.price}</span>
+                <span className="text-[1.75rem] font-medium">{formatCurrency(van.price)}</span>
                 <span className="text-[1.25rem] font-light">/ day</span>
             </p>
             <p className="mt-2 text-[1rem] font-medium text-black">{van.description}</p>

@@ -12,6 +12,8 @@
     --color-van-type-simple: #e17654;
     --color-van-type-luxury: #161616;
     --color-van-type-rugged: #115e59;
+    --color-dashboard-income: #ffead0;
+    --color-dashboard-review: #ffddb2;
 
     --font-family-sans: Inter, sans-serif;
 }

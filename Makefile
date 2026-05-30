@@ -35,6 +35,9 @@ install: ## Run npm install inside the container
 add: ## Install a package  →  make add PKG=react-router-dom
 	$(COMPOSE) exec $(SERVICE) npm install $(PKG)
 
+add-dev: ## Install a package as a dev dependency  →  make add PKG=react-router-dom
+	$(COMPOSE) exec $(SERVICE) npm install $(PKG) --save-dev
+
 remove: ## Remove a package  →  make remove PKG=react-router-dom
 	$(COMPOSE) exec $(SERVICE) npm uninstall $(PKG)
 

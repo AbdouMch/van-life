@@ -1,7 +1,8 @@
-import type { Van } from "@/type.ts"
+import type { Van } from "@/type"
 import { Link } from "react-router-dom"
 
 import { cn, typeBg } from "@/lib/cn"
+import { formatCurrency } from "@/lib/format"
 
 type Props = {
     van: Van
@@ -24,20 +25,20 @@ export default function Van({ van }: Props) {
                         "opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100",
                         "hover:bg-brand hover:text-white",
                     )}
-                    aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
+                    aria-label={`View details for ${van.name}, priced at ${formatCurrency(van.price)} per day`}
                 >
                     View details
                 </Link>
             </div>
 
-            <div className="flex justify-between text-[1.25rem]">
+            <div className="flex justify-between text-xl">
                 <p>{van.name}</p>
                 <div className="">
-                    <p>${van.price}</p>
+                    <p>{formatCurrency(van.price)}</p>
                     <p className="-mt-2">/day</p>
                 </div>
             </div>
-            <div className="van-type-container">
+            <div>
                 <span className={cn(typeBg[van.type], "rounded px-2 py-1 text-white")}>
                     {van.type}
                 </span>

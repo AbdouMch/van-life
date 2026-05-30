@@ -2,7 +2,7 @@ import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 
 import "./styles/main.css"
-import App from "./App.tsx"
+import App from "./App"
 
 async function bootstrap() {
     if (import.meta.env.DEV) {

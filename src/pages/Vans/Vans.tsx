@@ -2,9 +2,9 @@ import { Link } from "react-router-dom"
 
 import type { Van as VanType } from "@/type"
 
-import Van from "@/pages/Vans/Van.tsx"
-import PageWrapper from "@/pages/Vans/PageWrapper.tsx"
-import useFetch from "@/hooks/useFetch.ts"
+import Van from "@/pages/Vans/Van"
+import PageWrapper from "@/pages/Vans/PageWrapper"
+import useFetch from "@/hooks/useFetch"
 
 function Vans() {
     const { data, loading, error } = useFetch<{ vans: VanType[] }>("/api/vans")
@@ -50,7 +50,7 @@ function Vans() {
                     Clear filters
                 </Link>
             </div>
-            <div className="list mt-5 grid gap-2 md:grid-cols-2">
+            <div className="mt-5 grid gap-2 md:grid-cols-2">
                 {vans.map((van) => (
                     <Van key={van.id} van={van} />
                 ))}
