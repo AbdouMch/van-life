@@ -5,7 +5,7 @@ import dreamFinder from "@/mocks/images/dreamfinder.png"
 import theCruiser from "@/mocks/images/the-cruiser.png"
 import greenWonder from "@/mocks/images/green-wonder.png"
 
-import type { Van } from "@/type"
+import type { Van } from "@/shared/types/van"
 
 export const vans: Van[] = [
     {

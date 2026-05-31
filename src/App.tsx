@@ -3,18 +3,20 @@ import { AuthProvider } from "@/context/AuthContext"
 
 import Home from "@/pages/Home"
 import About from "@/pages/About"
-import Vans from "@/pages/Vans"
-import VanDetails from "@/pages/VanDetails"
-import MainLayout from "@/components/MainLayout"
-import HostLayout from "@/components/HostLayout"
-import Dashboard from "@/pages/Host/Dashboard"
-import Income from "@/pages/Host/Income"
-import Reviews from "@/pages/Host/Reviews"
-import HostVans from "@/pages/Host/HostVans"
-import HostVanDetail from "@/pages/Host/HostVanDetail"
-import HostVanDetailsLayout from "@/components/Host/HostVanDetailsLayout"
-import HostVanPricing from "@/pages/Host/HostVanPricing"
-import HostVanPhotos from "@/pages/Host/HostVanPhotos"
+import MainLayout from "@/shared/components/MainLayout"
+
+import Vans from "@/features/vans/pages/Vans"
+import VanDetails from "@/features/vans/pages/VanDetails"
+
+import HostLayout from "@/features/host/components/HostLayout"
+import HostVanDetailsLayout from "@/features/host/components/HostVanDetailsLayout"
+import Dashboard from "@/features/host/pages/Dashboard"
+import Income from "@/features/host/pages/Income"
+import Reviews from "@/features/host/pages/Reviews"
+import HostVans from "@/features/host/pages/HostVans"
+import HostVanDetail from "@/features/host/pages/HostVanDetail"
+import HostVanPricing from "@/features/host/pages/HostVanPricing"
+import HostVanPhotos from "@/features/host/pages/HostVanPhotos"
 
 export default function App() {
     return (
