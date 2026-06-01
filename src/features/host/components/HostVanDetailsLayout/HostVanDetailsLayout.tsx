@@ -33,7 +33,7 @@ export default function HostVanDetailsLayout() {
                                 <span
                                     className={cn(
                                         typeBg[van.type],
-                                        "rounded px-3 py-1 font-semibold text-white capitalize",
+                                        "rounded px-3 py-1 font-semibold",
                                     )}
                                 >
                                     {van.type}

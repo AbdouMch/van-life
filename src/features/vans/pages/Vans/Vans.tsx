@@ -1,17 +1,35 @@
-import { Link } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 
 import type { Van } from "@/shared/types/van"
 import VanCard from "@/features/vans/components/VanCard"
 import useFetch from "@/shared/hooks/useFetch"
+import { cn, typeBg, typeHoverBg } from "@/shared/lib/cn"
 
 function Vans() {
+    const [searchParams, setSearchParams] = useSearchParams()
+    const typeFilter = searchParams.get("type")
+    console.log(typeFilter)
+
     const { data, loading, error } = useFetch<{ vans: Van[] }>("/api/vans")
     const vans = data?.vans || []
+    const filteredVans = typeFilter ? vans.filter((van) => van.type === typeFilter) : vans
 
     const types = [...new Set(vans.map((v) => v.type))]
 
+    function handleTypeChange(type: string | null) {
+        setSearchParams((prev) => {
+            if (type === null) {
+                prev.delete("type")
+            } else {
+                prev.set("type", type)
+            }
+
+            return prev
+        })
+    }
+
     return (
-        <div className="vans-container mb-2 px-8">
+        <div className="vans-container px-8">
             <h1 className="text-left text-[2.5rem] font-extrabold text-black">
                 Explore our van options
             </h1>
@@ -25,18 +43,30 @@ function Vans() {
                             {types.map((type) => (
                                 <button
                                     key={type}
-                                    className="bg-brand-light cursor-pointer rounded p-2"
+                                    onClick={() => handleTypeChange(type)}
+                                    className={cn(
+                                        "cursor-pointer rounded px-5.5 py-1.5 text-base font-medium capitalize",
+                                        type === typeFilter
+                                            ? `${typeBg[type]}`
+                                            : "bg-brand-ultra-light text-black-light",
+                                        typeHoverBg[type],
+                                    )}
                                 >
                                     {type}
                                 </button>
                             ))}
                         </div>
-                        <Link to="/vans" className="underline">
-                            Clear filters
-                        </Link>
+                        {typeFilter && (
+                            <button
+                                onClick={() => handleTypeChange(null)}
+                                className="cursor-pointer underline"
+                            >
+                                Clear filters
+                            </button>
+                        )}
                     </div>
-                    <div className="mt-5 grid gap-2 md:grid-cols-2">
-                        {vans.map((van) => (
+                    <div className="my-8.5 grid justify-items-center gap-8.5 md:grid-cols-2">
+                        {filteredVans.map((van) => (
                             <VanCard key={van.id} van={van} />
                         ))}
                     </div>

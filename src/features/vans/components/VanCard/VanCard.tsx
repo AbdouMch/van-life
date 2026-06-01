@@ -10,12 +10,12 @@ type Props = {
 
 export default function VanCard({ van }: Props) {
     return (
-        <div className="group flex flex-col gap-2">
+        <div className="group h-full">
             <div className="relative">
                 <img
                     src={van.imageUrl}
                     alt={`Image of ${van.name}`}
-                    className="max-h-220 w-auto rounded"
+                    className="aspect-4/3 w-full rounded object-cover"
                 />
                 <Link
                     to={`/vans/${van.id}`}
@@ -39,9 +39,7 @@ export default function VanCard({ van }: Props) {
                 </div>
             </div>
             <div>
-                <span className={cn(typeBg[van.type], "rounded px-2 py-1 text-white")}>
-                    {van.type}
-                </span>
+                <span className={cn(typeBg[van.type], "rounded px-2 py-1")}>{van.type}</span>
             </div>
         </div>
     )

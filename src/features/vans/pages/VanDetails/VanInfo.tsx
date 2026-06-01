@@ -20,7 +20,7 @@ export default function VanInfo({ van }: Props) {
                 <span
                     className={cn(
                         typeBg[van.type],
-                        "text-[1.25rem] font-medium text-white capitalize",
+                        "text-[1.25rem] font-medium",
                         "rounded px-3 py-1",
                     )}
                 >
