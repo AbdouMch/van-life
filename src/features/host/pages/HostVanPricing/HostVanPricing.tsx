@@ -1,9 +1,8 @@
-import { useOutletContext } from "react-router-dom"
 import { formatCurrency } from "@/shared/lib/format"
-import type { Van } from "@/shared/types/van"
+import { useHostVanContext } from "@/features/host/components/HostVanDetailsLayout"
 
 export default function HostVanPricing() {
-    const { van } = useOutletContext<{ van: Van }>()
+    const { van } = useHostVanContext()
 
     return (
         <p>

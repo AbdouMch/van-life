@@ -13,36 +13,26 @@ export default function HostVans() {
         error: vansError,
     } = useFetch<{ vans: Van[] }>(`/api/host/${user?.id}/vans`)
 
-    const vans = data?.vans || null
-
-    function renderVans() {
-        if (loadingVans) {
-            return <p>Loading ...</p>
-        }
-
-        if (vansError) {
-            return <p>Error: {vansError}</p>
-        }
-
-        if (vans === null || vans.length === 0) {
-            return <p>No vans found.</p>
-        }
-
-        return vans.map((van) => (
-            <Link
-                key={van.id}
-                to={`/host/vans/${van.id}`}
-                className="m-auto flex w-full items-center rounded-md bg-white px-8 py-4 hover:opacity-90"
-            >
-                <HostVanCard van={van} />
-            </Link>
-        ))
-    }
+    const vans = data?.vans || []
 
     return (
         <div className="px-7 py-10">
             <h1 className="mb-8 text-2xl font-bold">Your listed vans</h1>
-            <div className="flex flex-col gap-2">{renderVans()}</div>
+            <div className="flex flex-col gap-2">
+                {loadingVans && <p>Loading vans...</p>}
+                {vansError && <p className="text-red-500">Error: {vansError}</p>}
+                {!loadingVans && !vansError && vans.length === 0 && <p>No vans found.</p>}
+                {vans.length > 0 &&
+                    vans.map((van) => (
+                        <Link
+                            key={van.id}
+                            to={`/host/vans/${van.id}`}
+                            className="m-auto flex w-full items-center rounded-md bg-white px-8 py-4 hover:opacity-90"
+                        >
+                            <HostVanCard van={van} />
+                        </Link>
+                    ))}
+            </div>
         </div>
     )
 }

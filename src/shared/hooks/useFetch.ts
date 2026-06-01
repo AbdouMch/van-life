@@ -21,7 +21,9 @@ export default function useFetch<T>(url: string) {
                 if (error instanceof DOMException && error.name === "AbortError") return
                 setError(error instanceof Error ? error.message : "An unexpected error occurred")
             })
-            .finally(() => setLoading(false))
+            .finally(() => {
+                if (!controller.signal.aborted) setLoading(false)
+            })
 
         return () => controller.abort()
     }, [url])

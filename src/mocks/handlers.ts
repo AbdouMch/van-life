@@ -1,4 +1,4 @@
-import { http, HttpResponse } from "msw"
+import { delay, http, HttpResponse } from "msw"
 
 import { vans } from "./data"
 
@@ -13,8 +13,9 @@ export const handlers = [
         return HttpResponse.json({ van })
     }),
 
-    http.get("/api/host/:id/vans", ({ params }) => {
+    http.get("/api/host/:id/vans", async ({ params }) => {
         const hostVans = vans.filter((v) => v.hostId === params.id)
+        await delay(1000)
 
         return HttpResponse.json({ vans: hostVans })
     }),

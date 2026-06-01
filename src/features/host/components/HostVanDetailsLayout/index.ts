@@ -1,1 +1,1 @@
-export { default } from "./HostVanDetailsLayout"
+export { default, useHostVanContext } from "./HostVanDetailsLayout"

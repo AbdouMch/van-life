@@ -1,8 +1,7 @@
-import { useOutletContext } from "react-router-dom"
-import type { Van } from "@/shared/types/van"
+import { useHostVanContext } from "@/features/host/components/HostVanDetailsLayout"
 
-export default function HostVanDetail() {
-    const { van } = useOutletContext<{ van: Van }>()
+export default function HostVanInfo() {
+    const { van } = useHostVanContext()
 
     return (
         <>

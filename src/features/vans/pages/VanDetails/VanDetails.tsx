@@ -1,67 +1,25 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 import type { Van } from "@/shared/types/van"
 import useFetch from "@/shared/hooks/useFetch"
-import { cn, typeBg } from "@/shared/lib/cn"
-import { formatCurrency } from "@/shared/lib/format"
-
-import PageWrapper from "./PageWrapper"
+import VanInfo from "./VanInfo"
 
 export default function VanDetails() {
     const { id } = useParams()
     const { data, loading, error } = useFetch<{ van: Van }>(`/api/vans/${id}`)
     const van = data?.van || null
 
-    if (loading) {
-        return (
-            <PageWrapper>
-                <p>Loading vans...</p>
-            </PageWrapper>
-        )
-    }
-
-    if (error) {
-        return (
-            <PageWrapper>
-                <p className="text-red-500">Error: {error}</p>
-            </PageWrapper>
-        )
-    }
-
-    if (van === null) {
-        return (
-            <PageWrapper>
-                <p>Van not found.</p>
-            </PageWrapper>
-        )
-    }
-
     return (
-        <PageWrapper>
-            <div className="flex flex-col items-center">
-                <img
-                    src={van.imageUrl}
-                    alt={`Photo of ${van.name}`}
-                    className="max-h-220 w-auto rounded"
-                />
+        <div className="flex w-full flex-col p-8">
+            <Link to=".." relative="path" className="text-left text-[1rem] text-black underline">
+                &larr; Back to all vans
+            </Link>
+            <div className="mt-10">
+                {loading && <p>Loading vans...</p>}
+                {error && <p className="text-red-500">Error: {error}</p>}
+                {!loading && !error && van === null && <p>Van not found.</p>}
+                {van && <VanInfo van={van} />}
             </div>
-            <div className="mt-5">
-                <span
-                    className={cn(
-                        typeBg[van.type],
-                        "text-[1.25rem] font-medium text-white capitalize",
-                        "rounded px-3 py-1",
-                    )}
-                >
-                    {van.type}
-                </span>
-            </div>
-            <p className="mt-5 text-[2rem] font-extrabold text-black">{van.name}</p>
-            <p className="mt-2 text-[1.5rem] font-medium text-black">
-                <span className="text-[1.75rem] font-medium">{formatCurrency(van.price)}</span>
-                <span className="text-[1.25rem] font-light">/ day</span>
-            </p>
-            <p className="mt-2 text-[1rem] font-medium text-black">{van.description}</p>
-        </PageWrapper>
+        </div>
     )
 }
