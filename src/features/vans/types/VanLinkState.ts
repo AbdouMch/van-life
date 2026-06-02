@@ -1,1 +1,4 @@
-export type VanLinkState = { searchQuery: string }
+export type VanLinkState = {
+    searchQuery: string
+    typeFilter: string | null
+}

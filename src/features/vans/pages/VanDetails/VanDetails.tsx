@@ -10,7 +10,8 @@ export default function VanDetails() {
     const { data, loading, error } = useFetch<{ van: Van }>(`/api/vans/${id}`)
     const van = data?.van || null
 
-    const { searchQuery } = useVansSearchQueryLinkState()
+    const { searchQuery, typeFilter } = useVansSearchQueryLinkState()
+    const backLabel = typeFilter ? `Back to ${typeFilter} vans` : "Back to all vans"
 
     return (
         <div className="flex w-full flex-col p-8">
@@ -19,7 +20,7 @@ export default function VanDetails() {
                 relative="path"
                 className="text-left text-[1rem] text-black underline"
             >
-                &larr; Back to all vans
+                &larr; {backLabel}
             </Link>
             <div className="mt-10">
                 {loading && <p>Loading vans...</p>}

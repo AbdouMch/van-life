@@ -3,7 +3,9 @@ import type { VanLinkState } from "@/features/vans/types/VanLinkState"
 
 export default function useVansSearchQueryLinkState(): VanLinkState {
     const location = useLocation()
-    const searchQuery = location.state?.searchQuery || ""
 
-    return { searchQuery }
+    return {
+        searchQuery: location.state?.searchQuery || "",
+        typeFilter: location.state?.typeFilter ?? null,
+    }
 }
