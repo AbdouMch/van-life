@@ -53,7 +53,7 @@ src/
 
 ## Component convention
 
-Every component and page lives in a folder with its own name:
+The folder + `index.ts` pattern applies to any component imported from outside its directory:
 
 ```
 ComponentName/
@@ -63,6 +63,17 @@ ComponentName/
 ```
 
 Import via the folder, not the file. Always use the `@/` alias, never relative paths across folders.
+
+**Exception — private sub-components:** a component used only by its immediate parent page can live as a flat file in the same folder — no subfolder or `index.ts` needed:
+
+```
+VanDetails/
+  VanDetails.tsx
+  VanInfo.tsx     # private to VanDetails, never imported from outside
+  index.ts
+```
+
+The folder pattern exists to enable clean external imports. Skip it when there are none.
 
 ## Code style
 

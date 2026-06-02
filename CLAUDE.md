@@ -56,7 +56,7 @@ src/
 
 ### Component and page convention
 
-Every component and page lives in its own folder with at minimum two files:
+The folder + `index.ts` pattern applies to any component imported from **outside** its directory:
 
 ```
 ComponentName/
@@ -72,6 +72,17 @@ import HostVanCard from "@/features/host/components/HostVanCard/HostVanCard"  //
 ```
 
 Always use the `@/` path alias — never relative paths across folders.
+
+**Exception — private sub-components:** a component used only by its immediate parent page (never imported from outside that page's folder) can live as a flat file alongside the page:
+
+```
+VanDetails/
+  VanDetails.tsx
+  VanInfo.tsx     # private to VanDetails — no folder needed
+  index.ts
+```
+
+The folder + `index.ts` pattern exists to enable clean external imports. When there are no external imports, the extra indirection adds no value.
 
 ### Routing
 

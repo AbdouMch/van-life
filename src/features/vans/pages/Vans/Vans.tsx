@@ -5,10 +5,9 @@ import VanCard from "@/features/vans/components/VanCard"
 import useFetch from "@/shared/hooks/useFetch"
 import { cn, typeBg, typeHoverBg } from "@/shared/lib/cn"
 
-function Vans() {
+export default function Vans() {
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
-    console.log(typeFilter)
 
     const { data, loading, error } = useFetch<{ vans: Van[] }>("/api/vans")
     const vans = data?.vans || []
@@ -75,5 +74,3 @@ function Vans() {
         </div>
     )
 }
-
-export default Vans

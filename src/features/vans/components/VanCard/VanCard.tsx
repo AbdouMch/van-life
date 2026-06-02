@@ -3,12 +3,15 @@ import { Link } from "react-router-dom"
 
 import { cn, typeBg } from "@/shared/lib/cn"
 import { formatCurrency } from "@/shared/lib/format"
+import useVanLinkState from "@/features/vans/hooks/useVanLinkState"
 
 type Props = {
     van: Van
 }
 
 export default function VanCard({ van }: Props) {
+    const linkState = useVanLinkState()
+
     return (
         <div className="group h-full">
             <div className="relative">
@@ -19,6 +22,7 @@ export default function VanCard({ van }: Props) {
                 />
                 <Link
                     to={`/vans/${van.id}`}
+                    state={linkState}
                     className={cn(
                         "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
                         "bg-brand-light text-black-light rounded px-4 py-2 font-semibold",

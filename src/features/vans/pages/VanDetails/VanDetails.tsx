@@ -3,15 +3,22 @@ import { Link, useParams } from "react-router-dom"
 import type { Van } from "@/shared/types/van"
 import useFetch from "@/shared/hooks/useFetch"
 import VanInfo from "./VanInfo"
+import useVansSearchQueryLinkState from "@/features/vans/hooks/useVansSearchQueryLinkState"
 
 export default function VanDetails() {
     const { id } = useParams()
     const { data, loading, error } = useFetch<{ van: Van }>(`/api/vans/${id}`)
     const van = data?.van || null
 
+    const { searchQuery } = useVansSearchQueryLinkState()
+
     return (
         <div className="flex w-full flex-col p-8">
-            <Link to=".." relative="path" className="text-left text-[1rem] text-black underline">
+            <Link
+                to={`..?${searchQuery}`}
+                relative="path"
+                className="text-left text-[1rem] text-black underline"
+            >
                 &larr; Back to all vans
             </Link>
             <div className="mt-10">
