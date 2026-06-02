@@ -17,6 +17,7 @@ import HostVans from "@/features/host/pages/HostVans"
 import HostVanInfo from "./features/host/pages/HostVanInfo"
 import HostVanPricing from "@/features/host/pages/HostVanPricing"
 import HostVanPhotos from "@/features/host/pages/HostVanPhotos"
+import NotFound from "@/pages/NotFound"
 
 export default function App() {
     return (
@@ -41,6 +42,7 @@ export default function App() {
                                 <Route path="photos" element={<HostVanPhotos />} />
                             </Route>
                         </Route>
+                        <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>
             </AuthProvider>
