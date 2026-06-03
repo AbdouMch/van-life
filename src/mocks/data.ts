@@ -7,6 +7,11 @@ import greenWonder from "@/mocks/images/green-wonder.png"
 
 import type { Van } from "@/shared/types/van"
 
+export const users = [
+    { id: "123", email: "b@b.com", password: "p1234" },
+    { id: "456", email: "a@a.com", password: "p1234" },
+]
+
 export const vans: Van[] = [
     {
         id: "1",

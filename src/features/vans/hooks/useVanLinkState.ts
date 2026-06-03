@@ -6,6 +6,6 @@ export default function useVanLinkState(): VanLinkState {
 
     return {
         searchQuery: searchParams.toString(),
-        typeFilter: searchParams.get("type") || null
+        typeFilter: searchParams.get("type") || null,
     }
 }

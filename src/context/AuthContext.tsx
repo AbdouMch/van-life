@@ -6,15 +6,26 @@ type User = {
 
 type AuthContextValue = {
     user: User | null
+    login: (email: string, password: string) => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
 
-// TODO Swap this provider's internals when real auth arrives — pages stay untouched.
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [user] = useState<User | null>({ id: "123" })
+    const [user, setUser] = useState<User | null>(null)
 
-    return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    async function login(email: string, password: string) {
+        const res = await fetch("/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        })
+        if (!res.ok) throw new Error("Invalid credentials")
+        const { user } = await res.json()
+        setUser(user)
+    }
+
+    return <AuthContext.Provider value={{ user, login }}>{children}</AuthContext.Provider>
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

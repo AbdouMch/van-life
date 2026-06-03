@@ -15,6 +15,9 @@
     --color-van-type-rugged: #115e59;
     --color-dashboard-income: #ffead0;
     --color-dashboard-review: #ffddb2;
+    --color-border-grey: rgb(0 0 0 / 0.27);
+
+    --shadow-sm-custom: 0px 1px 2px 0px rgb(0 0 0 / 0.18);
 
     --font-family-sans: Inter, sans-serif;
 }

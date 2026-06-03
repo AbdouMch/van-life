@@ -1,8 +1,18 @@
 import { delay, http, HttpResponse } from "msw"
 
-import { vans } from "./data"
+import { users, vans } from "./data"
 
 export const handlers = [
+    http.post("/api/login", async ({ request }) => {
+        const body = (await request.json()) as { email: string; password: string }
+        const match = users.find((u) => u.email === body.email && u.password === body.password)
+        await delay(400)
+
+        if (!match) return new HttpResponse(null, { status: 401 })
+        const { password: _, ...user } = match
+        return HttpResponse.json({ user })
+    }),
+
     http.get("/api/vans", () => {
         return HttpResponse.json({ vans })
     }),
